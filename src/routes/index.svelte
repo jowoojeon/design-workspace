@@ -3,27 +3,40 @@
 	import { onMount } from 'svelte';
 
 	const fetchTtsData = async () => {
-		const synthesize_url = 'https://kakaoi-newtone-openapi.kakao.com/v1/synthesize';
-		const headers_synth = {
-			'Content-Type': 'application/xml',
-			Authorization: `KakaoAK b37f820cbbc5e27de9dd442ac1e6f0b6`
-		};
-		const synth_in = `<speak> <voice name='WOMAN_DIALOG_BRIGHT'> 테스트 </voice> </speak>`;
+		const text = '안녕하세요';
+		const res = await fetch(`/${text}.json`);
+		const result = res.arrayBuffer();
+		console.log(result);
+		// return await res.arrayBuffer();
 
-		const res = await fetch(synthesize_url, {
-			method: 'POST',
-			headers: headers_synth,
-			body: JSON.stringify({
-				data: synth_in
-			})
-		});
+		// const { audioData } = await res.arrayBuffer();
+		// console.log('======================');
+		// console.log(audioData);
+		// console.log('======================');
+		// return audioData;
 
-		if (!res.ok) {
-			const message = await res.text();
-			throw new Error(`[fetchTtsData] ${message}`);
-		}
+		// const proxy = 'https://pacific-shelf-42608.herokuapp.com/';
+		// const synthesize_url = `${proxy}https://kakaoi-newtone-openapi.kakao.com/v1/synthesize`;
+		// const headers_synth = {
+		// 	'Content-Type': 'application/xml',
+		// 	Authorization: `KakaoAK b37f820cbbc5e27de9dd442ac1e6f0b6`
+		// };
+		// const synth_in = `<speak> <voice name='WOMAN_DIALOG_BRIGHT'> 테스트 </voice> </speak>`;
 
-		return await res.arrayBuffer();
+		// const res = await fetch(synthesize_url, {
+		// 	method: 'POST',
+		// 	headers: headers_synth,
+		// 	body: JSON.stringify({
+		// 		data: synth_in
+		// 	})
+		// });
+
+		// if (!res.ok) {
+		// 	const message = await res.text();
+		// 	throw new Error(`[fetchTtsData] ${message}`);
+		// }
+
+		// return await res.arrayBuffer();
 	};
 
 	onMount(async () => {
@@ -43,9 +56,8 @@
 		};
 
 		setInterval(() => {
-			console.log('tts');
 			run();
-		}, 10000);
+		}, 2000);
 
 		anime({
 			targets: '.el',
