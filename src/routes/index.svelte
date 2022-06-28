@@ -20,7 +20,7 @@
 	div {
 		width: 100px;
 		height: 100px;
-		background-color: black;
+		background-color: grey;
 		display: inline-block;
 	}
 	/* CSS 코드 끝*/
